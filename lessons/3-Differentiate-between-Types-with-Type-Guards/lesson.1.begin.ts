@@ -19,13 +19,22 @@ const textLayer: TextLayer = {
 
 const imageLayer: ImageLayer = {
   type: LayerType.Image,
-
+  
   position: { x: 0, y: 0 },
   id: "20",
   rotation: 0,
   src: "ps-dark.png",
   maxBounds: { width: projectSize.width }
 };
+
+function setFontSize(layer: TextLayer, value: string | number) {
+  if ( typeof value === "number" ) {
+    layer.fontSize = `${value}px`;
+  } else {
+    layer.fontSize = value
+  }
+  // typeof value === "number" ? layer.fontSize = `${value}px` : value;
+}
 
 const project: Project = {
   layers: [imageLayer, textLayer],
