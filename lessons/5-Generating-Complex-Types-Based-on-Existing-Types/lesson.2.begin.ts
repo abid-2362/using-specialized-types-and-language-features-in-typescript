@@ -30,7 +30,7 @@ const imageLayer: ImageLayer = {
 function setTextLayerProps(
   project: Project,
   id: string,
-  props: { [key: string]: any }
+  props: Partial<TextLayer>
 ) {
   const layer = project.layers.find(l => l.id === id);
 
@@ -47,7 +47,7 @@ const project: Project = {
 };
 
 setTextLayerProps(project, "10", {
-  shouldnotwork: false
+  text: "This is cool"
 });
 
 render(project);
