@@ -25,7 +25,7 @@ class TextLayerClass implements TextLayer {
     this.rotation = obj.rotation;
     this.position = obj.position;
   }
-
+  
   type: LayerType.Text = LayerType.Text;
   text: string;
   color: string;
@@ -44,7 +44,7 @@ class ImageLayerClass implements ImageLayer {
     this.src = obj.src;
     this.maxBounds = obj.maxBounds;
   }
-
+  
   type: LayerType.Image = LayerType.Image;
   src: string;
   maxBounds: Constraint;
@@ -77,7 +77,7 @@ const textLayer2 = new TextLayerClass({
 
 const imageLayer = new ImageLayerClass({
   type: LayerType.Image,
-
+  
   position: { x: 0, y: 0 },
   id: "20",
   rotation: 0,
@@ -86,7 +86,7 @@ const imageLayer = new ImageLayerClass({
 });
 
 function setFontSize(layer: TextLayer, value: string | number) {
-  if (typeof value === "number") {
+  if ( typeof value === "number" ) {
     layer.fontSize = `${value}px`;
   } else {
     layer.fontSize = value;
@@ -95,7 +95,9 @@ function setFontSize(layer: TextLayer, value: string | number) {
 
 function setFontSizeOnSelection(layers: Layer[], value: string | number) {
   layers.forEach(layer => {
-    setFontSize(layer, value);
+    if ( layer instanceof TextLayerClass ) {
+      setFontSize(layer, value);
+    }
   });
 }
 
