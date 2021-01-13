@@ -1,11 +1,4 @@
-import {
-  Project,
-  TextLayer,
-  ImageLayer,
-  LayerType,
-  Size,
-  Layer
-} from "./types";
+import { Layer, LayerType, Project, Size, TextLayer } from "./types";
 import { render } from "./render";
 
 const projectSize: Size = {
@@ -37,7 +30,7 @@ const textLayer2 = {
 
 const imageLayer = {
   type: LayerType.Image,
-
+  
   position: { x: 0, y: 0 },
   id: "20",
   rotation: 0,
@@ -45,8 +38,12 @@ const imageLayer = {
   maxBounds: { width: projectSize.width }
 };
 
+function isTextLayer(layer: Layer): layer is TextLayer {
+  return layer.type === LayerType.Text
+}
+
 function setFontSize(layer: TextLayer, value: string | number) {
-  if (typeof value === "number") {
+  if ( typeof value === "number" ) {
     layer.fontSize = `${value}px`;
   } else {
     layer.fontSize = value;
@@ -55,7 +52,9 @@ function setFontSize(layer: TextLayer, value: string | number) {
 
 function setFontSizeOnSelection(layers: Layer[], value: string | number) {
   layers.forEach(layer => {
-    setFontSize(layer, value);
+    if ( isTextLayer(layer) ) {
+      setFontSize(layer, value);
+    }
   });
 }
 
