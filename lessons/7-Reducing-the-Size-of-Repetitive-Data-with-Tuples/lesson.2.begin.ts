@@ -1,8 +1,9 @@
 import { Position, Size } from "./types";
 
 // Element -> [x,y,w,h]
+type Element = [number, number, number, number];
 
-function hitTest(elem1: number[], elem2: number[]) {
+function hitTest(elem1: Element, elem2: Element) {
   const [x1, y1, w1, h1] = elem1;
   const [x2, y2, w2, h2] = elem2;
 
