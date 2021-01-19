@@ -1,8 +1,8 @@
 import { Position, Size } from "./types";
 
 // Element -> [x,y,w,h]
-
-type Element = [number, number, number, number];
+type pxOrPt = "px" | "pt";
+type Element = [number, number, number, number, pxOrPt];
 
 function hitTest(elem1: Element, elem2: Element) {
   const [x1, y1, w1, h1] = elem1;
@@ -11,6 +11,6 @@ function hitTest(elem1: Element, elem2: Element) {
   return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
 }
 
-const didHit = hitTest([301, 200, 200, 200], [500, 200, 200, 200]);
+const didHit = hitTest([301, 200, 200, 200, "px"], [500, 200, 200, 200, "pt"]);
 
 console.log(didHit);
