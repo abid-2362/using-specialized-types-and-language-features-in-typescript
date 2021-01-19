@@ -12,6 +12,10 @@ class TextLayerClass implements TextLayer {
     public text: string,
     public fontSize: string
   ) {}
+  
+  get [Symbol.toStringTag]() {
+    return `TextLayer ${this.id}`;
+  }
 }
 
 const textLayer1: TextLayer = new TextLayerClass(
