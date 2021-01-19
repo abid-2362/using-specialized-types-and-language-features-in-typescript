@@ -20,6 +20,31 @@ function setColor(layer: TextLayer, color: string) {
   layer.color = color;
 }
 
+// function projectAction<U extends any[]>(
+//   name: string,
+//   func: (...args: U) => any
+// ) {
+//   return function wrapper(project: Project, ...args: U) {
+//     func(...args);
+//     project.lastAction = name;
+//     project.lastUpdated = Date.now();
+//   }
+// }
+
+// function projectAction<U extends any[]>(
+//   name: string,
+//   func: (...args: U) => any
+// ) {
+//   return function wrapper(project: Project, ...args: U) {
+//     func(...args);
+//     project.lastAction = name;
+//     project.lastUpdated = Date.now();
+//   }
+// }
+//
+// const wrappedSetText = projectAction("setText", setText);
+// const wrappedSetcolor = projectAction("setColor", setColor);
+
 function projectAction<U extends any[]>(
   name: string,
   func: (...args: U) => any
@@ -34,11 +59,14 @@ function projectAction<U extends any[]>(
 const wrappedSetText = projectAction("setText", setText);
 const wrappedSetcolor = projectAction("setColor", setColor);
 
+
 const project: Project = {
   layers: [textLayer],
   size: { height: 500, width: 500 }
 }
 
+// wrappedSetText(project, textLayer, "This is new text!!!");
+// wrappedSetcolor(project, textLayer, "red");
 wrappedSetText(project, textLayer, "This is new text!!!");
 wrappedSetcolor(project, textLayer, "red");
 
